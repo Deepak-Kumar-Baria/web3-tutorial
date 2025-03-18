@@ -2,7 +2,7 @@ from web3 import Web3
 from Deploy import deploy_contract
 import os
 
-contract_file = "./SimpleStorage.sol"
+contract_file = "./src/SimpleStorage.sol"
 account = os.getenv("ANVIL_ACCOUNT")
 private_key = os.getenv("ANVIL_PRIVATE_KEY")
 provider = os.getenv("LOCAL_PROVIDER")

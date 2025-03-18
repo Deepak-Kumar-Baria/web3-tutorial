@@ -23,6 +23,6 @@ def Compile_Solidity(contract:str) -> str:
     return compiled_sol
 
 if __name__ == "__main__":
-    compiled_sol = Compile_Solidity("./SimpleStorage.sol")
+    compiled_sol = Compile_Solidity("./src/SimpleStorage.sol")
     with open('./Compiled/SimpleStorage.json','w') as file:
          json.dump(compiled_sol, file)

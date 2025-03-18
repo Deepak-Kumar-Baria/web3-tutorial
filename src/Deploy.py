@@ -1,6 +1,5 @@
 from web3 import Web3  # type: ignore
 from Compile import Compile_Solidity
-from typing import Tuple
 import os
 
 def deploy_contract(contract_file: str, contract_name: str, account: str, private_key: str, provider: str, chain_id: int):
@@ -12,6 +11,7 @@ def deploy_contract(contract_file: str, contract_name: str, account: str, privat
     byte_code = compiled_sol['contracts'][contract_file][contract_name]['evm']['bytecode']['object']  # type: ignore
 
     connection = Web3(Web3.HTTPProvider(provider))
+
     contract = connection.eth.contract(abi=abi, bytecode=byte_code)
     nonce = connection.eth.get_transaction_count(account)
 
@@ -31,7 +31,7 @@ def deploy_contract(contract_file: str, contract_name: str, account: str, privat
     return (tx_receipt.contractAddress, abi)
 
 if __name__ == "__main__":
-    contract = "./SimpleStorage.sol"  # Define the contract file path
+    contract = "./src/SimpleStorage.sol"  # Define the contract file path
     account = os.getenv("ACCOUNT")
     private_key = os.getenv("PRIVATE_KEY")
     provider = os.getenv("ETHERSCAN_PROVIDER").format("holesky")
